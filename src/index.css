@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom CSS Scrollbars for slick look */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.6);
+}
+
+/* REWROTE HIGH-DENSITY TO SPARK CREXTIO PREMIUM STYLE */
+
+/* Custom premium card roundness & subtle border accents */
+#workplace-wrapper, #dashboard-view, #tax-settings-container {
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Base card layout overrides for aesthetic spaced styling */
+#workplace-wrapper .p-8,
+#workplace-wrapper .p-6,
+#workplace-wrapper .p-5 {
+  padding: 1.5rem !important;
+}
+
+#workplace-wrapper .rounded-xl, .bg-white.rounded-xl {
+  border-radius: 24px !important;
+  border-color: rgba(226, 232, 240, 0.6) !important;
+}
+
+/* Elegant tables with wide clear pacing */
+#workplace-wrapper table th {
+  padding: 12px 16px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  background-color: #f7f6f2 !important;
+  color: #555555 !important;
+  border-bottom: 1px solid #e1dfda !important;
+}
+
+#workplace-wrapper table td {
+  padding: 14px 16px !important;
+  font-size: 12.5px !important;
+  line-height: 1.5 !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5) !important;
+}
+
+#workplace-wrapper table tr {
+  height: auto !important;
+  background-color: #ffffff !important;
+  transition: all 0.2s ease !important;
+}
+
+#workplace-wrapper table tr:hover {
+  background-color: #fbfbfa !important;
+}
+
+/* Form inputs & selectivity with ultra gold/amber focus states */
+#workplace-wrapper input,
+#workplace-wrapper select,
+#workplace-wrapper textarea {
+  padding: 10px 14px !important;
+  font-size: 12.5px !important;
+  height: auto !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(148, 163, 184, 0.3) !important;
+  background-color: #fcfbf8 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+#workplace-wrapper input:focus,
+#workplace-wrapper select:focus,
+#workplace-wrapper textarea:focus {
+  border-color: #fbc449 !important;
+  box-shadow: 0 0 0 4px rgba(251, 196, 73, 0.15) !important;
+  outline: none !important;
+  background-color: #ffffff !important;
+}
+
+/* Custom button overrides for elegant black/gold styling */
+.btn-primary-ssl {
+  background-color: #222222 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  border-radius: 9999px !important;
+  border: 1px solid #111111 !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-primary-ssl:hover {
+  background-color: #111111 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+}
+
+.btn-accent-ssl {
+  background-color: #fbc449 !important;
+  color: #222222 !important;
+  font-weight: 700 !important;
+  border-radius: 9999px !important;
+  transition: all 0.2s ease !important;
+}
+
+.btn-accent-ssl:hover {
+  background-color: #f0b533 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Aesthetic ambient glows */
+.crextio-glass {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+.glow-yellow-corner {
+  box-shadow: 0 0 80px 20px rgba(251, 196, 73, 0.08) !important;
+}
+

@@ -1,0 +1,207 @@
+{
+  "entities": {
+    "customer": {
+      "title": "Customer",
+      "description": "Customer database for logistics ERP with group, NPWP, POP payments, and multi-PIC contacts",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "companyName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "address": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "inactive"] },
+        "customerGroup": { "type": "string" },
+        "npwp": { "type": "string" },
+        "top": { "type": "string", "enum": ["7 Hari", "14 Hari", "30 Hari"] },
+        "billingAddress": { "type": "string" },
+        "pics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string" },
+              "name": { "type": "string" },
+              "email": { "type": "string" },
+              "phone": { "type": "string" }
+            }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "companyName", "npwp", "top"]
+    },
+    "parameter": {
+      "title": "Parameter",
+      "description": "Operational master configurations and variables",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "key": { "type": "string" },
+        "value": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "key", "value"]
+    },
+    "master_parameter": {
+      "title": "Master Parameter",
+      "description": "Standard dropdown parameters like fleet types, locations, and payment terms",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["id", "category", "code", "name"]
+    },
+    "tariff": {
+      "title": "Tariff",
+      "description": "Sales tariffs and biaya list",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["sales", "cost"] },
+        "amount": { "type": "number" },
+        "description": { "type": "string" }
+      },
+      "required": ["id", "name", "type", "amount"]
+    },
+    "fleet": {
+      "title": "Fleet",
+      "description": "Trucks and logistics unit information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "licensePlate": { "type": "string" },
+        "model": { "type": "string" },
+        "type": { "type": "string" },
+        "status": { "type": "string", "enum": ["ready", "maintenance", "on-trip"] }
+      },
+      "required": ["id", "licensePlate"]
+    },
+    "driver": {
+      "title": "Driver",
+      "description": "Logistics drivers and personnel",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "licenseNo": { "type": "string" },
+        "status": { "type": "string", "enum": ["available", "on-duty", "off"] }
+      },
+      "required": ["id", "name"]
+    },
+    "jobOrder": {
+      "title": "Job Order",
+      "description": "Logistics cargo job instructions and status tracking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "origin": { "type": "string" },
+        "destination": { "type": "string" },
+        "tariffId": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "in-progress", "completed", "cancelled"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "customerId", "status"]
+    },
+    "spk": {
+      "title": "Surat Perintah Kerja",
+      "description": "Work order instructions for driver and truck unit trip",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "jobOrderId": { "type": "string" },
+        "driverId": { "type": "string" },
+        "fleetId": { "type": "string" },
+        "status": { "type": "string", "enum": ["assigned", "on-the-road", "delivered"] },
+        "pocketMoney": { "type": "number" },
+        "fuelAllowance": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "jobOrderId", "driverId", "fleetId", "status"]
+    },
+    "invoice": {
+      "title": "Invoice",
+      "description": "Billing, tax preparation, and invoicing logs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "jobOrderId": { "type": "string" },
+        "amount": { "type": "number" },
+        "taxRate": { "type": "number" },
+        "taxAmount": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["unpaid", "paid"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "jobOrderId", "amount", "status"]
+    },
+    "master_tarif": {
+      "title": "Master Tarif & Biaya",
+      "description": "Master data for container tariffs, handling services, and reimbursement costs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nama_item": { "type": "string" },
+        "pelanggan": { "type": "string" },
+        "rute": { "type": "string" },
+        "kategori": { "type": "string", "enum": ["Trucking", "Inklaring", "Jasa EMKL"] },
+        "harga_20ft": { "type": "number" },
+        "harga_40ft": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "pelanggan", "rute", "kategori", "harga_20ft", "harga_40ft"]
+    }
+  },
+  "firestore": {
+    "/customers/{customerId}": {
+      "schema": "#/entities/customer",
+      "description": "List of cargo customers and shipping partners"
+    },
+    "/parameters/{parameterId}": {
+      "schema": "#/entities/parameter",
+      "description": "Global operational constant rates and variables"
+    },
+    "/master_parameters/{id}": {
+      "schema": "#/entities/master_parameter",
+      "description": "Centralized logistics ERP master parameter elements and variables"
+    },
+    "/tariffs/{tariffId}": {
+      "schema": "#/entities/tariff",
+      "description": "Predefined standard logistical rates and prices"
+    },
+    "/fleets/{fleetId}": {
+      "schema": "#/entities/fleet",
+      "description": "Active container trucks and fleet inventory registry"
+    },
+    "/drivers/{driverId}": {
+      "schema": "#/entities/driver",
+      "description": "Logistics driver roster, license numbers, and availability statuses"
+    },
+    "/jobOrders/{jobOrderId}": {
+      "schema": "#/entities/jobOrder",
+      "description": "Operational job orders and freight instructions tracking table"
+    },
+    "/spks/{spkId}": {
+      "schema": "#/entities/spk",
+      "description": "Surat Perintah Kerja (SPK) trip details for drivers"
+    },
+    "/invoices/{invoiceId}": {
+      "schema": "#/entities/invoice",
+      "description": "Calculated invoices, taxing computations, and cash collection registries"
+    },
+    "/master_tarifs/{id}": {
+      "schema": "#/entities/master_tarif",
+      "description": "Master data list for operational tariffs and customer specific margins"
+    }
+  }
+}

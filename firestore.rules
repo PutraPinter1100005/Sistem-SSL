@@ -1,0 +1,79 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    // Help validate ID formats for single document target operations
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+
+    match /customers/{customerId} {
+      allow read, write: if true;
+    }
+
+    match /master_customers/{id} {
+      allow read, write: if true;
+    }
+
+    match /master_vendors/{id} {
+      allow read, write: if true;
+    }
+
+    match /master_drivers/{id} {
+      allow read, write: if true;
+    }
+
+    match /master_trucks/{id} {
+      allow read, write: if true;
+    }
+
+    match /parameters/{parameterId} {
+      allow read, write: if true;
+    }
+
+    match /master_parameters/{id} {
+      allow read, write: if true;
+    }
+
+    match /tariffs/{tariffId} {
+      allow read, write: if true;
+    }
+
+    match /fleets/{fleetId} {
+      allow read, write: if true;
+    }
+
+    match /drivers/{driverId} {
+      allow read, write: if true;
+    }
+
+    match /jobOrders/{jobOrderId} {
+      allow read, write: if true;
+    }
+
+    match /job_orders/{job_order_id} {
+      allow read, write: if true;
+    }
+
+    match /spks/{spkId} {
+      allow read, write: if true;
+    }
+
+    match /invoices/{invoiceId} {
+      allow read, write: if true;
+    }
+
+    match /master_tarifs/{id} {
+      allow read, write: if true;
+    }
+
+    match /surat_perintah_kerja/{id} {
+      allow read, write: if true;
+    }
+  }
+}
